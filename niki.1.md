@@ -61,9 +61,9 @@ Write down the commands needed to create a snapshot of a drive. Also explain the
 	  VG UUID               IysbdG-aojm-k0JB-WFZ0-mEbS-WZJf-M4k3bm
 
 
-Създаване на снапшот ('s' параметъра е за snapshot, 'n' параметъра е за името на снапшота, 'L' размера на дяла)
+Създаване на снапшот ('s' параметъра е за snapshot, 'n' параметъра е за името на снапшота, 'L' размера на дяла):
 	root@tintirimintiri:~# lvcreate -s -n snimka0 -L 512M /dev/zeus/boot
-	  Logical volume "snimka0" created
+	 Logical volume "snimka0" created
 
 
 Преглед:
