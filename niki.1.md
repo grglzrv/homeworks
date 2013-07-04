@@ -62,11 +62,13 @@ Write down the commands needed to create a snapshot of a drive. Also explain the
 
 
 Създаване на снапшот ('s' параметъра е за snapshot, 'n' параметъра е за името на снапшота, 'L' размера на дяла):
+
 	root@tintirimintiri:~# lvcreate -s -n snimka0 -L 512M /dev/zeus/boot
 	 Logical volume "snimka0" created
 
 
 Преглед:
+
 	root@tintirimintiri:~# lvdisplay 
 	  --- Logical volume ---
 	  LV Path                /dev/zeus/root
@@ -127,6 +129,7 @@ Write down the commands needed to create a snapshot of a drive. Also explain the
 	  Block device           253:2
 
 Преглед на текущо дисково пространство:
+
 	root@tintirimintiri:~# df -h
 	Filesystem             Size  Used Avail Use% Mounted on
 	rootfs                 7.5G  1.4G  6.0G  19% /
@@ -138,12 +141,14 @@ Write down the commands needed to create a snapshot of a drive. Also explain the
 	/dev/mapper/zeus-boot  458M   29M  406M   7% /boot
 
 Създаване на временен файл с големина ~200MB, та когато се възвърне от снапшот дяла да се види дали промените биват отразени:
+
 	root@tintirimintiri:/boot# dd if=/dev/zero of=/boot/test bs=1M count=200
 	200+0 records in
 	200+0 records out
 	209715200 bytes (210 MB) copied, 2.03707 s, 103 MB/s
 
 Текущо състояние, заети 39.25% от снапшота:
+
 	  --- Logical volume ---
 	  LV Path                /dev/zeus/snimka0
 	  LV Name                snimka0
@@ -168,10 +173,12 @@ Write down the commands needed to create a snapshot of a drive. Also explain the
 
 
 Размонтиране:
+
 	root@tintirimintiri:~# umount /dev/mapper/zeus-boot
 
 
 Връщане на Boot от снапшот:
+
 	root@tintirimintiri:~# lvconvert --merge /dev/mapper/zeus-snimka0
 	  Merging of volume snimka0 started.
 	  boot: Merged: 39.2%
@@ -180,6 +187,7 @@ Write down the commands needed to create a snapshot of a drive. Also explain the
 	  Logical volume "snimka0" successfully removed
 
 Проверка:
+
 	root@tintirimintiri:~# lvdisplay 
 	  --- Logical volume ---
 	  LV Path                /dev/zeus/root
@@ -217,8 +225,11 @@ Write down the commands needed to create a snapshot of a drive. Also explain the
 
 
 Монтиране на boot:
+
 	root@tintirimintiri:~# mount -t ext4 /dev/zeus/boot /boot
+
 но в случая е описан в fstab, затова мързеливата:
+
 	root@tintirimintiri:~# mount -a
 
 Създадения по горе временен файл от 210MB не същестува в boot дяла.
@@ -228,6 +239,7 @@ Write down the commands needed to create a snapshot of a drive. Also explain the
 Ако снапшотът е монтиран, например в mnt, то може да се види първоначалният изглед на дяла.
 
 Премахване на снапшот:
+
 	root@tintirimintiri:~# lvremove /dev/zeus/snimka0 
 	Do you really want to remove active logical volume snimka0? [y/n]: y
 	  Logical volume "snimka0" successfully removed
