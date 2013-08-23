@@ -29,7 +29,7 @@
 	NETMASK=255.255.255.0
 	BROADCAST=10.10.12.255
 	GATEWAY=10.10.12.1
-	BONDING_OPTS="mode=active-backup miimon=100 primary=eth0"
+	BONDING_OPTS="mode=active-backup miimon=100 primary=tun0"
 
 Променяме съдържанието на файловете "ifcfg-tun0" и "ifcfg-tun1",
 като им задаваме да са подчинени и кой интерфейс да е главен
