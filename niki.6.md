@@ -31,6 +31,10 @@
 	GATEWAY=10.10.12.1
 	BONDING_OPTS="mode=active-backup miimon=100 primary=tun0"
 
+Като BONDING_OPTS, може да се добави и във файла(bonding.conf), където се описва alias-a.
+
+	options bond0 miimon=100 mode=1
+
 Променяме съдържанието на файловете "ifcfg-tun0" и "ifcfg-tun1",
 като им задаваме да са подчинени и кой интерфейс да е главен
 
